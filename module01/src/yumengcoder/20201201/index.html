@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas仿信用卡电子签名特效</title>
+    <link rel="stylesheet" href="esignDemo.css">
+</head>
+<body>
+<center>
+    <div class="canvasDiv">
+        <div id="editing_area">
+            <canvas width="600" height="250" id="canvasEdit"></canvas>
+        </div>
+    </div>
+
+    <div class="imgDiv">
+        <span id="sign_show"></span>
+    </div>
+
+    <div class="btnDiv">
+        <a id="sign_clear" class="clearBtn">清除</a>
+        <a id="sign_ok" class="okBtn">确认</a>
+    </div>
+</center>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="esign.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //初始化动作，根据DOM的ID不同进行自定义，如果不写则内部默认取这四个
+       $().esign("canvasEdit","sign_show","sign_clear","sign_ok");
+    });
+</script>
+
+<div style="text-align: center;margin: 50px 0;font: normal 14px/24px 'Microsoft YaHei'";>
+    <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+</div>
+
+</body>
+</html>
