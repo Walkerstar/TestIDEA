@@ -9,7 +9,7 @@ import java.util.HashSet;
  * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
  * @author mcw 2020/10/10 21:43
  */
-public class LeetCode142 {
+public class leetCode142 {
     /**
      * 方法一：哈希表
      * 时间复杂度：O(N) 空间复杂度：O(N)

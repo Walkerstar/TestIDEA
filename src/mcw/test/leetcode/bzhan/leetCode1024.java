@@ -19,7 +19,7 @@ import java.util.Arrays;
  * 现在我们手上有 [0,2] + [2,8] + [8,10]，而这些涵盖了整场比赛 [0, 10]。
  * @author mcw 2020/10/24 13:41
  */
-public class LeetCode1024 {
+public class leetCode1024 {
 
 
     /**
