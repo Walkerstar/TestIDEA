@@ -1,5 +1,6 @@
 package mcw.test.leetcode.bzhan;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -11,6 +12,62 @@ import java.util.Stack;
  * @author mcw 2020\6\29 0029-15:23
  */
 public class leetCode84 {
+
+    public int largestRectangleArea01(int[] heights) {
+        int n = heights.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+
+        Stack<Integer> stack = new Stack<>();
+        //从左往右遍历，依次找出每个柱子的最左边距
+        for (int i = 0; i < n; i++) {
+            //找出不小于当前柱子高度的柱子，记录它的下标
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                stack.pop();
+            }
+            //记录当前柱子的最左边距
+            left[i] = (stack.isEmpty() ? -1 : stack.peek());
+            stack.push(i);
+        }
+        //从右往左遍历，依次找出每个柱子的最右边距
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                stack.pop();
+            }
+            right[i] = (stack.isEmpty() ? n : stack.peek());
+            stack.push(i);
+        }
+        //计算每个柱子所能扩散的最大面积
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans = Math.max(ans, (right[i] - left[i] - 1) * heights[i]);
+        }
+        return ans;
+    }
+
+    public int largestRectangleArea02(int[] heights) {
+        int n = heights.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        Arrays.fill(right, n);
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                right[stack.peek()] = i;
+                stack.pop();
+            }
+            left[i] = (stack.isEmpty() ? -1 : stack.peek());
+            stack.push(i);
+        }
+
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans = Math.max(ans, (right[i] - left[i] - 1) * heights[i]);
+        }
+        return ans;
+    }
+
 
     public static int largestRectangleArea(int[] heights) {
         //O(n)
