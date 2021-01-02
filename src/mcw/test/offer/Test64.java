@@ -47,8 +47,10 @@ public class Test64 {
             else if (begin > q.peekFirst())
                 q.pollFirst();
 
+            // 保证从大到小 如果前面数小则需要依次弹出，直至满足要求
             while ((!q.isEmpty()) && num[q.peekLast()] <= num[i])
                 q.pollLast();
+            // 添加当前值对应的数组下标
             q.add(i);
             if (begin >= 0)
                 res.add(num[q.peekFirst()]);
