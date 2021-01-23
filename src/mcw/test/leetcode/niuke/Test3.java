@@ -4,9 +4,8 @@ package mcw.test.leetcode.niuke;
 import mcw.test.common.Point;
 
 /**
- * @author mcw 2019\11\27 0027-21:44
- *
  * 对于给定的 n 个位于同一二维平面上的点，求最多能有多少个点位于同一直线上
+ * @author mcw 2019\11\27 0027-21:44
  */
 public class Test3 {
 
@@ -22,7 +21,7 @@ public class Test3 {
             long dy=b-points[i-1].y;
             if(dx==0&&dy==0){
                 for (int j = 0; j <points.length ; j++) {
-                    if(points[i].x==a&&points[j].y==b){
+                    if(points[j].x==a&&points[j].y==b){
                         count++;
                     }
                 }
