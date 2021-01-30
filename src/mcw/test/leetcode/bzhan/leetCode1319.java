@@ -56,7 +56,7 @@ public class leetCode1319 {
             if (rootX == rootY) {
                 return false;
             }
-            if (size[x] < size[y]) {
+            if (size[rootX] < size[rootY]) {
                 int temp = rootX;
                 rootX = rootY;
                 rootY = temp;
