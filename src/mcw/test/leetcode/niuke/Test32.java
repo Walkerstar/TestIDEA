@@ -3,12 +3,15 @@ package mcw.test.leetcode.niuke;
 import java.util.ArrayList;
 
 /**
- * @author mcw 2020\3\22 0022-18:19
- *
  * 给定一个索引 K ，返回杨辉三角的第 K行 。K从0开始  备注：能够只使用 O(k) 的额外空间完成吗？
+ *
+ * @author mcw 2020\3\22 0022-18:19
  */
 public class Test32 {
 
+    /**
+     * 递归调用，每次计算出 当前行的前一行数据
+     */
     public static ArrayList<Integer> getRow(int rowIndex) {
         if (rowIndex == 0) {
             ArrayList<Integer> list = new ArrayList<>();
@@ -26,11 +29,11 @@ public class Test32 {
         return thisRow;
     }
 
-    //从后往前计算，避免数据被覆盖。
+    /**
+     *从后往前计算，避免数据被覆盖。
+     */
     public static ArrayList<Integer> getrow(int rowIndex) {
         ArrayList<Integer> row = new ArrayList<>();
-        if (rowIndex == 0)
-            return row;
         row.add(1);
         for (int i = 1; i < rowIndex + 1; i++) {
             for (int j = i - 1; j > 0; j--) {
