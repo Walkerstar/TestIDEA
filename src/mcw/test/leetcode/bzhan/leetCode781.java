@@ -1,12 +1,15 @@
 package mcw.test.leetcode.bzhan;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 森林中，每个兔子都有颜色。其中一些兔子（可能是全部）告诉你还有多少其他的兔子和自己有相同的颜色。
  * 我们将这些回答放在 answers 数组里。返回森林中兔子的最少数量。
- *
+ * tips：
+ * 1.answers 的长度最大为1000。
+ * 2.answers[i] 是在 [0, 999] 范围内的整数
  * @author mcw 2021\4\7 0007-14:19
  */
 public class leetCode781 {
@@ -24,6 +27,8 @@ public class leetCode781 {
      * 因此兔子数至少为⌈x/(y+1)⌉ *(y+1)
      *
      * 我们可以用哈希表统计 answers 中各个元素的出现次数，对每个元素套用上述公式计算，并将计算结果累加，即为最终答案。
+     *
+     * ceil(a/b)=(a+b-1)/b
      */
     public int numRabbits(int[] answers) {
         Map<Integer, Integer> count = new HashMap<>();
@@ -37,5 +42,39 @@ public class leetCode781 {
             ans += (x + y) / (y + 1) * (y + 1);
         }
         return ans;
+    }
+
+    public int numRabbits1(int[] answers) {
+        Arrays.sort(answers);
+        int res = 0;
+        int left = 0, right = 0, len = answers.length;
+        while (right < len) {
+            //当right<len,且维护区间个数不超过这一颜色的最大的个数，且可能为同一种颜色
+            int tempRes = answers[left];
+            while (right < len && right - left <= tempRes && tempRes == answers[right]) {
+                right++;
+            }
+            //加上这个颜色数量
+            res += tempRes + 1;
+            left = right;
+        }
+        return res;
+    }
+
+    public int numRabbits2(int[] answers) {
+        int[] m = new int[1000];
+        int result = 0;
+        for (int i : answers) {
+            //m[i]>0   先前已经记录到有回答i的兔子,这次遇到只需容量减1
+            if (m[i] > 0) {
+                m[i]--;
+            } else {
+                //m[i]==0  第一次遇到回答i的兔子或者上一次遇到回答i的兔子时创建颜色的容量已经用完.
+                //创建新的颜色,容量为i,并将这一波兔子数量加到结果中
+                m[i] = i;
+                result += i + 1;
+            }
+        }
+        return result;
     }
 }
