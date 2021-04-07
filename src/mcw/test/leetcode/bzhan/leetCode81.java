@@ -1,9 +1,12 @@
 package mcw.test.leetcode.bzhan;
 
 /**
- * @author mcw 2020\6\30 0030-16:29
  * Search in Rotated Sorted Array II
  * 33题变种
+ * 给你 旋转后 的数组 nums 和一个整数 target ，请你编写一个函数来判断给定的目标值是否存在于数组中。
+ * 如果 nums 中存在这个目标值 target ，则返回 true ，否则返回 false 。
+ *
+ * @author mcw 2020\6\30 0030-16:29
  */
 public class leetCode81 {
     public static boolean search(int[] nums, int target) {
