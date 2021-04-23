@@ -15,8 +15,6 @@ import java.util.Arrays;
  *       0 <= m, n <= 200
  *       1 <= m + n <= 200
  *       -109 <= nums1[i], nums2[i] <= 109
- *
- * 来源：力扣（Leed所有。商业转载请联系官方授权，非商业转载请注明出处。
  * @author mcw 2021\4\05 0005-15:04
  */
 public class leetCode88 {
