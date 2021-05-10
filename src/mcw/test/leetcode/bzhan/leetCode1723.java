@@ -17,6 +17,7 @@ public class leetCode1723 {
     //二分查找 + 回溯 + 剪枝
     public int minimumTimeRequired(int[] jobs, int k) {
         Arrays.sort(jobs);
+        //从大到小排列
         int low = 0, high = jobs.length - 1;
         while (low < high) {
             int temp = jobs[low];
@@ -25,7 +26,6 @@ public class leetCode1723 {
             low++;
             high--;
         }
-        System.out.println(jobs);
         int l = jobs[0];
         int r = Arrays.stream(jobs).sum();
         while (l < r) {
@@ -94,8 +94,4 @@ public class leetCode1723 {
         return dp[k - 1][(1 << n) - 1];
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new leetCode1723().minimumTimeRequired(new int[]{2, 1, 5, 8, 7, 6, 10, 87}, 4));
-    }
 }
