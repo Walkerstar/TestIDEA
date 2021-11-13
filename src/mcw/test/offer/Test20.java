@@ -1,6 +1,5 @@
 package mcw.test.offer;
 
-import com.sun.org.apache.bcel.internal.util.Class2HTML;
 
 import java.util.Stack;
 

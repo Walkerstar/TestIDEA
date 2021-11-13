@@ -1,4 +1,4 @@
-package 面试题;
+package Other;
 
 /**
  * Interview questions
