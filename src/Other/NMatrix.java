@@ -1,4 +1,4 @@
-package 面试题;
+package Other;
 
 /**
  * 输入正整数 N （N 不大于 100 ），输出一个 N 行矩阵 。 例 ： N=5

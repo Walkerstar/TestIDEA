@@ -1,4 +1,4 @@
-package 面试题;
+package Other;
 
 import java.util.Deque;
 import java.util.LinkedList;

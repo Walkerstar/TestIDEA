@@ -1,6 +1,5 @@
 package mcw.test.offer;
 
-import com.sun.org.glassfish.gmbal.AMXMBeanInterface;
 import mcw.test.common.ListNode;
 
 
