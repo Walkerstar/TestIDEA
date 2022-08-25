@@ -1,6 +1,5 @@
 package mcw.test.leetcode.bzhan;
 
-import sun.rmi.runtime.Log;
 
 /**
  * 珂珂喜欢吃香蕉。这里有 n 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 h 小时后回来。
