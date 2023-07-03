@@ -8,13 +8,21 @@ public class ListNode {
     public int val;
     public ListNode next;
 
-    public ListNode(int val){
-        this.val=val;
+    public ListNode(int val) {
+        this.val = val;
     }
 
-    public static ListNode generate(int[] arr){
+    public ListNode() {
+    }
+
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+
+    public static ListNode generate(int[] arr) {
         ListNode node = new ListNode(0);
-        ListNode pre=node;
+        ListNode pre = node;
         for (int value : arr) {
             node.next = new ListNode(value);
             node = node.next;
@@ -28,6 +36,6 @@ public class ListNode {
                 "val=" + val +
                 ", next=" + next +
                 '}';*/
-        return val+"-->"+next+"  ";
+        return val + "-->" + next + "  ";
     }
 }
