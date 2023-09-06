@@ -37,7 +37,7 @@ public class leetCode449 {
         if (data.isEmpty()) {
             return null;
         }
-        String[] arr = data.split(",");
+        String[] arr = data.split(", ");
         Deque<Integer> stack = new ArrayDeque<>();
         int length = arr.length;
         for (int i = 0; i < length; i++) {
