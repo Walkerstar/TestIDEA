@@ -37,7 +37,7 @@ package mcw.test.leetcode.bzhan;
  *
  * @author MCW 2023/8/22
  */
-public class leeCode849 {
+public class leetCode849 {
 
     public int maxDistToClosest(int[] seats) {
         int res = 0;
