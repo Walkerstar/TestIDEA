@@ -1,16 +1,18 @@
 package mcw.test.leetcode.bzhan;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 验证二叉树的前序序列化
- *
+ * <p>
  * 序列化二叉树的一种方法是使用前序遍历。当我们遇到一个非空节点时，我们可以记录下这个节点的值。如果它是一个空节点，
  * 我们可以使用一个标记值记录，例如 #。
- *
+ * <p>
  * 给定一串以逗号分隔的序列，验证它是否是正确的二叉树的前序序列化。编写一个在不重构树的条件下的可行算法。
- *
+ * <p>
  * 每个以逗号分隔的字符或为一个整数或为一个表示 null 指针的 '#' 。
  *
  * @author mcw 2021\3\12 0012-15:14
@@ -20,17 +22,17 @@ public class leetCode331 {
     /**
      * 方法一：栈
      * 我们可以定义一个概念，叫做槽位。一个槽位可以被看作「当前二叉树中正在等待被节点填充」的那些位置。
-     *
+     * <p>
      * 二叉树的建立也伴随着槽位数量的变化。每当遇到一个节点时：
-     *   1.如果遇到了空节点，则要消耗一个槽位；
-     *   2.如果遇到了非空节点，则除了消耗一个槽位外，还要再补充两个槽位。
-     *
+     * 1.如果遇到了空节点，则要消耗一个槽位；
+     * 2.如果遇到了非空节点，则除了消耗一个槽位外，还要再补充两个槽位。
+     * <p>
      * 此外，还需要将根节点作为特殊情况处理。
-     *
+     * <p>
      * 我们使用栈来维护槽位的变化。栈中的每个元素，代表了对应节点处剩余槽位的数量，而栈顶元素就对应着下一步可用的槽位数量。
      * 当遇到空节点时，仅将栈顶元素减 1；当遇到非空节点时，将栈顶元素减 1 后，再向栈中压入一个 2。无论何时，
      * 如果栈顶元素变为 0，就立刻将栈顶弹出。
-     *
+     * <p>
      * 遍历结束后，若栈为空，说明没有待填充的槽位，因此是一个合法序列；否则若栈不为空，则序列不合法。此外，在遍历的过程中，
      * 若槽位数量不足，则序列不合法。
      */
@@ -52,7 +54,7 @@ public class leetCode331 {
                 }
                 i++;
             } else {
-                //读一个数字
+                // 读一个数字
                 while (i < n && preorder.charAt(i) != ',') {
                     i++;
                 }
@@ -68,7 +70,7 @@ public class leetCode331 {
 
     /**
      * 回顾方法一的逻辑，如果把栈中元素看成一个整体，即所有剩余槽位的数量，也能维护槽位的变化。
-     *
+     * <p>
      * 因此，我们可以只维护一个计数器，代表栈中所有元素之和，其余的操作逻辑均可以保持不变。
      */
     public boolean isValidSerialization1(String preorder) {
@@ -85,11 +87,11 @@ public class leetCode331 {
                 slots--;
                 i++;
             } else {
-                //读一个数字
+                // 读一个数字
                 while (i < n && preorder.charAt(i) != ',') {
                     i++;
                 }
-                slots ++; // slots = slots - 1 + 2
+                slots++; // slots = slots - 1 + 2
             }
         }
         return slots == 0;
@@ -117,5 +119,29 @@ public class leetCode331 {
             }
         }
         return ans == -1;
+    }
+
+    /**
+     * 方法一：栈
+     * 我们将字符串 preorder 按逗号分割成数组，然后遍历数组，
+     * 如果遇到了连续两个 '#'，并且第三个元素不是 '#'，那么就将这三个元素替换成一个 '#'，这个过程一直持续到数组遍历结束。
+     * <p>
+     * 最后，判断数组长度是否为 1，且数组唯一的元素是否为 '#' 即可。
+     * <p>
+     * 作者：ylb
+     */
+    public boolean isValidSerialization3(String preorder) {
+        List<String> stk = new ArrayList<>();
+        for (String s : preorder.split(",")) {
+            stk.add(s);
+            while (stk.size() >= 3 && stk.get(stk.size() - 1).equals("#")
+                    && stk.get(stk.size() - 2).equals("#") && !stk.get(stk.size() - 3).equals("#")) {
+                stk.remove(stk.size() - 1);
+                stk.remove(stk.size() - 1);
+                stk.remove(stk.size() - 1);
+                stk.add("#");
+            }
+        }
+        return stk.size() == 1 && stk.get(0).equals("#");
     }
 }
